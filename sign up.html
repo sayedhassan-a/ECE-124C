@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Sign Up</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+        
+        body {
+            background-image: url('camp.jpg');
+            background-attachment: fixed;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+        
+        header {
+            font-family: "Comic Sans MS", cursive, sans-serif;
+            background-color: #001f74;
+            color: white;
+            text-align: center;
+            padding: 5px;
+            font-size: 35px;
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+        }
+        
+        button,
+        input,
+        select {
+            border: 1px solid black;
+            background: none;
+            padding: 10px;
+            display: inline-block;
+            margin: 5px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+        }
+        
+        .lname,
+        .fname {
+            display: block;
+            width: 50%;
+        }
+        
+        label {
+            display: inline-block
+        }
+        
+        ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background-color: #444444;
+            border-bottom-left-radius: 10px;
+            border-bottom-right-radius: 10px;
+        }
+        
+        li {
+            float: left;
+        }
+        
+        li a {
+            display: block;
+            color: white;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+        }
+        
+        li a:hover {
+            background-color: white;
+            color: black
+        }
+        
+        button:hover {
+            background-color: rgb(180, 13, 13);
+            color: white;
+        }
+        
+        .submit:hover {
+            background-color: rgb(13, 138, 13);
+            color: white
+        }
+        
+        button {
+            width: 46%;
+        }
+        
+        .submit {
+            width: 46%;
+        }
+        
+        .page {
+            font-family: Arial;
+            background-color: rgba(255, 255, 255, 0.7);
+            position: absolute;
+            left: 35%;
+            width: 30%;
+            padding: 2%;
+            border-radius: 10px;
+        }
+        
+        @media (max-width: 768px) {
+            .fname,
+            .lname {
+                width: 100%;
+            }
+            .submit {
+                width: 100%;
+            }
+            button {
+                width: 100%;
+            }
+            .page {
+                left: 25%;
+                width: 50%;
+            }
+        }
+    </style>
+
+
+</head>
+
+<body onload='document.register.fname.focus()'>
+    <header>
+        <h2>SporteX</h2>
+    </header>
+    <div class="navigation">
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="news.html">News</a></li>
+            <li><a href="fa.html">Football Awards</a></li>
+            <li style="float:right "><a href="about.html">About</a></li>
+            <li style="float:right "><a href="sign up.html">Sign Up</a></li>
+        </ul>
+    </div>
+    <br>
+    <div class="page ">
+        <form name="register" class="form" method="get">
+            <label style="font-size: 40px; "><b>Sign Up</b></label>
+            <hr>
+            <label class="fname" for="fname"><b>First Name</b></label>
+            <input class="fname" type="text" id="fname" name="fname" required>
+
+            <label class="lname" for="lname"><b>Last Name</b></label>
+            <input class="lname" type="text" id="lname" name="lname" required>
+            <label for="gender"><b>Choose your Gender</b></label>
+            <select style="width: 100%;" name="gender" id="g" required>
+                <option value="">None</option>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+            </select>
+
+            <label name="email" for="email "><b>Email Address</b></label>
+            <input style="width: 100%; " type="text" id="email" name="email" required>
+
+            <label for="emailconfirm"><b>Re-Enter The Email Address</b></label>
+            <input style=" width: 100%;" type="text" id="emailconfirm" name="emailconfirm" required>
+
+            <label for="mobile"><b>Enter the mobiel number</b></label>
+            <input style=" width: 100%;" type="text" id="mobile" name="mobile" required>
+
+            <label for="pass"><b>Enter The Password</b></label>
+            <input style="width:100%;" type="password" id="pass" name="pass" required>
+
+            <label for="repass"><b>Re-Enter The Password</b></label>
+            <input style="width:100%; " type="password" id="repass" name="repass" required>
+            <hr>
+            <input class="submit" for="submit" type="submit" onclick="checkForm()">
+            <button>Cancel</button>
+        </form>
+    </div>
+    <script type="text/javascript">
+        function checkForm() {
+
+            ch = /^\w+$/;
+            if (!ch.test(register.fname.value)) {
+                alert("Error: First Name must contain only letters, numbers and underscores!");
+                register.fname.focus();
+                return false;
+            }
+
+            ch = /^\w+$/;
+            if (!ch.test(register.lname.value)) {
+                alert("Error: Last Name must contain only letters, numbers and underscores!");
+                register.lname.focus();
+                return false;
+            }
+
+            ch = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+            if (!ch.test(register.email.value)) {
+                alert("Error: This Email address is invalid");
+                register.email.focus();
+                return false;
+            }
+            var mail = document.getElementById("email").value;
+            var mailconfirm = document.getElementById("emailconfirm").value;
+            if (mail != mailconfirm) {
+                alert("the Email address doesn't match the confirmation Email address");
+                register.emailconfirm.focus();
+                return false;
+            }
+            if (isNaN(register.mobile.value) || x < 1 || x > 10) {
+                alert("mobile number must contain only numbers")
+                register.mobile.focus();
+                return false;
+            }
+            if (register.mobile.value.length != 11) {
+                alert("mobile number must contain 11 digits")
+                register.mobile.focus();
+                return false;
+            }
+
+            ch = /[0-9]/;
+            if (!ch.test(register.pass.value)) {
+                alert("Error: The password must start with uppercase character, include one digit at least,one special character. The password must include 8 characters no more no less. No white spaces allowed in the password.");
+                register.pass.focus();
+                return false;
+            }
+            ch = /[a-z]/;
+            if (!ch.test(register.pass.value)) {
+                alert("Error: The password must start with uppercase character, include one digit at least,one special character. The password must include 8 characters no more no less. No white spaces allowed in the password.");
+                register.pass.focus();
+                return false;
+            }
+            ch = /^[A-Z]/;
+            if (!ch.test(register.pass.value)) {
+                alert("Error: The password must start with uppercase character, include one digit at least,one special character. The password must include 8 characters no more no less. No white spaces allowed in the password.");
+                register.pass.focus();
+                return false;
+            }
+            ch = /[ `!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/;
+            if (!ch.test(register.pass.value)) {
+                alert("Error: The password must start with uppercase character, include one digit at least,one special character. The password must include 8 characters no more no less. No white spaces allowed in the password.");
+                register.pass.focus();
+                return false;
+            }
+            if (register.pass.value.length != 8) {
+                alert("Error: The password must start with uppercase character, include one digit at least,one special character. The password must include 8 characters no more no less. No white spaces allowed in the password.");
+                register.pass.focus();
+                return false;
+            }
+
+
+            var x = document.getElementById("pass").value;
+            var y = document.getElementById("repass").value;
+            if (x != y) {
+                alert("the password doesn't match the confirm password");
+                register.repass.focus();
+                return false;
+            }
+            alert("you have signed up");
+            return true;
+        }
+    </script>
+</body>
+
+</html>
